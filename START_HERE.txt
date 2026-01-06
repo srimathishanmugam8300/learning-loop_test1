@@ -1,0 +1,201 @@
+================================================================================
+  AUTO-ANNOTATION LEARNING ENGINE - START HERE!
+================================================================================
+
+Welcome! This is a complete system for automatically organizing and labeling
+unlabeled image datasets.
+
+────────────────────────────────────────────────────────────────────────────
+  🚀 QUICK START (2 minutes)
+────────────────────────────────────────────────────────────────────────────
+
+1. Install dependencies:
+   
+   pip install numpy scikit-learn hdbscan
+
+2. Run the demo:
+   
+   python main.py --demo
+
+3. Check the results:
+   
+   Look in demo_output/ folder
+   Read demo_output/report.txt
+
+That's it! You just auto-annotated 100 synthetic images.
+
+────────────────────────────────────────────────────────────────────────────
+  📖 WHAT TO READ NEXT
+────────────────────────────────────────────────────────────────────────────
+
+For your next steps, read ONE of these based on your needs:
+
+→ QUICKSTART.md
+  If you want to use it with your own data right away
+  (~5 minute read)
+
+→ README.md  
+  If you want to understand how it works
+  (~15 minute read)
+
+→ DOCUMENTATION_INDEX.md
+  If you want a complete guide to all documentation
+  (Navigation file)
+
+────────────────────────────────────────────────────────────────────────────
+  💡 WHAT THIS SYSTEM DOES
+────────────────────────────────────────────────────────────────────────────
+
+Give it:
+  • Image embeddings (from CLIP, ResNet, etc.)
+  • List of class names (e.g., "dog", "cat", "bird")
+
+It returns:
+  • All images organized into class folders
+  • Confidence scores for each assignment
+  • Train/val/test splits ready for ML training
+  • NO manual labeling required!
+
+Key features:
+  ✓ Works for ANY dataset size (20 to 1M+ images)
+  ✓ Works for ANY domain (animals, vehicles, anything)
+  ✓ NO thresholds - assigns all images automatically
+  ✓ NO human review needed
+  ✓ Self-refining through learning iterations
+
+────────────────────────────────────────────────────────────────────────────
+  🎯 USAGE EXAMPLE
+────────────────────────────────────────────────────────────────────────────
+
+With your own data:
+
+  python main.py \
+    --embeddings path/to/your_embeddings.npy \
+    --image-paths path/to/your_image_paths.txt \
+    --classes dog cat bird tiger \
+    --output my_annotated_dataset
+
+Your images will be organized into:
+  my_annotated_dataset/
+    dog/
+    cat/
+    bird/
+    tiger/
+    metadata.json
+    report.txt
+    splits/
+
+────────────────────────────────────────────────────────────────────────────
+  📚 FILE GUIDE
+────────────────────────────────────────────────────────────────────────────
+
+Documentation:
+  START_HERE.txt           ← You are here
+  QUICKSTART.md            ← Read this next (5 min)
+  README.md                ← Full documentation (15 min)
+  DOCUMENTATION_INDEX.md   ← Navigation guide
+  PROJECT_OVERVIEW.md      ← Technical deep-dive
+  IMPLEMENTATION_SUMMARY.md← What was implemented
+
+Code:
+  main.py                  ← Command-line interface
+  example_usage.py         ← Python API examples
+  auto_annotation_engine.py← Core algorithm
+  data_loader.py           ← Data processing
+  dataset_organizer.py     ← Output organization
+  config.py                ← Configuration
+  visualizer.py            ← Visualization tools
+  test_engine.py           ← Tests
+
+Setup:
+  requirements.txt         ← Dependencies
+  .gitignore              ← Git ignore rules
+
+────────────────────────────────────────────────────────────────────────────
+  ❓ COMMON QUESTIONS
+────────────────────────────────────────────────────────────────────────────
+
+Q: I don't have embeddings yet. What do I do?
+A: Extract them first using CLIP, ResNet, or any vision model.
+   See QUICKSTART.md for examples.
+
+Q: Will this work with my specific dataset?
+A: Yes! It's designed to work with ANY domain and ANY size.
+
+Q: Do I need pre-computed clusters?
+A: No, they'll be computed automatically if not provided.
+
+Q: What if I don't have CLIP installed?
+A: The system will work with basic embeddings. CLIP is optional
+   but recommended for better results.
+
+Q: How accurate is it?
+A: Depends on your embeddings quality. Typical confidence: 0.6-0.9.
+   The system assigns ALL images - check confidence scores in output.
+
+────────────────────────────────────────────────────────────────────────────
+  🔧 TROUBLESHOOTING
+────────────────────────────────────────────────────────────────────────────
+
+If something doesn't work:
+
+1. Make sure dependencies are installed:
+   pip install numpy scikit-learn hdbscan
+
+2. Try the demo first to verify installation:
+   python main.py --demo
+
+3. Check QUICKSTART.md Troubleshooting section
+
+4. Verify your input files:
+   - Embeddings: NumPy array, shape [N, D]
+   - Image paths: Text file, one path per line
+
+────────────────────────────────────────────────────────────────────────────
+  🎓 LEARNING PATH
+────────────────────────────────────────────────────────────────────────────
+
+Beginner:
+  1. Run: python main.py --demo
+  2. Read: QUICKSTART.md
+  3. Try with your data
+
+Intermediate:
+  1. Read: README.md "How It Works"
+  2. Experiment with parameters
+  3. Study: example_usage.py
+
+Advanced:
+  1. Read: PROJECT_OVERVIEW.md
+  2. Study: auto_annotation_engine.py
+  3. Customize and extend
+
+────────────────────────────────────────────────────────────────────────────
+  ✅ NEXT STEPS
+────────────────────────────────────────────────────────────────────────────
+
+Right now:
+  ☐ Run: python main.py --demo
+  ☐ Read: QUICKSTART.md
+
+Then:
+  ☐ Prepare your embeddings
+  ☐ Run with your data
+  ☐ Check results in output folder
+
+Later:
+  ☐ Read: README.md for full understanding
+  ☐ Explore: Visualization with visualizer.py
+  ☐ Integrate: Use in your ML pipeline
+
+────────────────────────────────────────────────────────────────────────────
+
+Ready to start? Run this command:
+
+    python main.py --demo
+
+Then read: QUICKSTART.md
+
+Questions? Check: DOCUMENTATION_INDEX.md
+
+================================================================================

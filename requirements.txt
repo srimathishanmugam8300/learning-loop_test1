@@ -1,0 +1,46 @@
+# Core dependencies (REQUIRED)
+numpy>=1.21.0
+scikit-learn>=1.0.0
+hdbscan>=0.8.27
+
+# Optional dependencies for text embeddings
+# Install ONE of these for better text embeddings:
+
+# Option 1: CLIP (recommended for vision-language tasks)
+# Uncomment to use:
+# git+https://github.com/openai/CLIP.git
+# torch>=1.9.0
+# torchvision>=0.10.0
+
+# Option 2: Sentence Transformers (lighter weight)
+# Uncomment to use:
+# sentence-transformers>=2.2.0
+
+# Optional: Visualization tools
+# Uncomment to enable visualizer.py:
+# matplotlib>=3.5.0
+# seaborn>=0.11.0
+
+# Optional: Testing
+# Uncomment to run tests:
+# pytest>=7.0.0
+
+# ========================================
+# Installation Instructions
+# ========================================
+#
+# Minimal install (required only):
+#   pip install numpy scikit-learn hdbscan
+#
+# With CLIP (recommended):
+#   pip install numpy scikit-learn hdbscan
+#   pip install git+https://github.com/openai/CLIP.git torch torchvision
+#
+# With Sentence Transformers:
+#   pip install numpy scikit-learn hdbscan sentence-transformers
+#
+# Full install (all features):
+#   pip install numpy scikit-learn hdbscan matplotlib seaborn pytest
+#   pip install git+https://github.com/openai/CLIP.git torch torchvision
+#
+# ========================================

@@ -1,0 +1,318 @@
+{
+  "method": "direct_clip_annotation",
+  "class_names": [
+    "dog",
+    "cat",
+    "tiger",
+    "lion",
+    "giraffe"
+  ],
+  "num_images": 20,
+  "class_distribution": {
+    "dog": 5,
+    "cat": 5,
+    "tiger": 4,
+    "lion": 3,
+    "giraffe": 3
+  },
+  "organized_paths": {
+    "dog": [
+      "dog\\image4.jpeg",
+      "dog\\image5.jpeg",
+      "dog\\images (6).jpeg",
+      "dog\\images (7).jpeg",
+      "dog\\images.jpeg"
+    ],
+    "cat": [
+      "cat\\download (1).jpeg",
+      "cat\\download (2).jpeg",
+      "cat\\image6.jpeg",
+      "cat\\images (2).jpeg",
+      "cat\\images (3).jpeg"
+    ],
+    "tiger": [
+      "tiger\\download (5).jpeg",
+      "tiger\\download (6).jpeg",
+      "tiger\\images (1).jpeg",
+      "tiger\\images (5).jpeg"
+    ],
+    "lion": [
+      "lion\\download (3).jpeg",
+      "lion\\download (4).jpeg",
+      "lion\\download (8).jpeg"
+    ],
+    "giraffe": [
+      "giraffe\\download (7).jpeg",
+      "giraffe\\download.jpeg",
+      "giraffe\\images (4).jpeg"
+    ]
+  },
+  "image_annotations": [
+    {
+      "original_path": "data\\images\\download (1).jpeg",
+      "class_index": 1,
+      "class_name": "cat",
+      "confidence": 0.2716096043586731,
+      "all_similarities": {
+        "dog": 0.22152884304523468,
+        "cat": 0.2716096043586731,
+        "tiger": 0.2409871518611908,
+        "lion": 0.21241725981235504,
+        "giraffe": 0.19338282942771912
+      }
+    },
+    {
+      "original_path": "data\\images\\download (2).jpeg",
+      "class_index": 1,
+      "class_name": "cat",
+      "confidence": 0.2851642966270447,
+      "all_similarities": {
+        "dog": 0.2342473566532135,
+        "cat": 0.2851642966270447,
+        "tiger": 0.26296424865722656,
+        "lion": 0.23522703349590302,
+        "giraffe": 0.2326652705669403
+      }
+    },
+    {
+      "original_path": "data\\images\\download (3).jpeg",
+      "class_index": 3,
+      "class_name": "lion",
+      "confidence": 0.3064362406730652,
+      "all_similarities": {
+        "dog": 0.21181067824363708,
+        "cat": 0.2295997589826584,
+        "tiger": 0.25591495633125305,
+        "lion": 0.3064362406730652,
+        "giraffe": 0.20284739136695862
+      }
+    },
+    {
+      "original_path": "data\\images\\download (4).jpeg",
+      "class_index": 3,
+      "class_name": "lion",
+      "confidence": 0.2972751557826996,
+      "all_similarities": {
+        "dog": 0.20004913210868835,
+        "cat": 0.22166375815868378,
+        "tiger": 0.24762797355651855,
+        "lion": 0.2972751557826996,
+        "giraffe": 0.20025557279586792
+      }
+    },
+    {
+      "original_path": "data\\images\\download (5).jpeg",
+      "class_index": 2,
+      "class_name": "tiger",
+      "confidence": 0.31212401390075684,
+      "all_similarities": {
+        "dog": 0.19597449898719788,
+        "cat": 0.24034945666790009,
+        "tiger": 0.31212401390075684,
+        "lion": 0.23003634810447693,
+        "giraffe": 0.20709696412086487
+      }
+    },
+    {
+      "original_path": "data\\images\\download (6).jpeg",
+      "class_index": 2,
+      "class_name": "tiger",
+      "confidence": 0.3010520935058594,
+      "all_similarities": {
+        "dog": 0.19843091070652008,
+        "cat": 0.23622968792915344,
+        "tiger": 0.3010520935058594,
+        "lion": 0.23087811470031738,
+        "giraffe": 0.20831796526908875
+      }
+    },
+    {
+      "original_path": "data\\images\\download (7).jpeg",
+      "class_index": 4,
+      "class_name": "giraffe",
+      "confidence": 0.29231154918670654,
+      "all_similarities": {
+        "dog": 0.1906568706035614,
+        "cat": 0.18498265743255615,
+        "tiger": 0.20535993576049805,
+        "lion": 0.1931321918964386,
+        "giraffe": 0.29231154918670654
+      }
+    },
+    {
+      "original_path": "data\\images\\download (8).jpeg",
+      "class_index": 3,
+      "class_name": "lion",
+      "confidence": 0.2972751557826996,
+      "all_similarities": {
+        "dog": 0.20004913210868835,
+        "cat": 0.22166375815868378,
+        "tiger": 0.24762797355651855,
+        "lion": 0.2972751557826996,
+        "giraffe": 0.20025557279586792
+      }
+    },
+    {
+      "original_path": "data\\images\\download.jpeg",
+      "class_index": 4,
+      "class_name": "giraffe",
+      "confidence": 0.3205922544002533,
+      "all_similarities": {
+        "dog": 0.20968186855316162,
+        "cat": 0.20174677670001984,
+        "tiger": 0.2328004688024521,
+        "lion": 0.20872732996940613,
+        "giraffe": 0.3205922544002533
+      }
+    },
+    {
+      "original_path": "data\\images\\image4.jpeg",
+      "class_index": 0,
+      "class_name": "dog",
+      "confidence": 0.2758069634437561,
+      "all_similarities": {
+        "dog": 0.2758069634437561,
+        "cat": 0.2104596197605133,
+        "tiger": 0.21439601480960846,
+        "lion": 0.22344648838043213,
+        "giraffe": 0.21418397128582
+      }
+    },
+    {
+      "original_path": "data\\images\\image5.jpeg",
+      "class_index": 0,
+      "class_name": "dog",
+      "confidence": 0.2727848291397095,
+      "all_similarities": {
+        "dog": 0.2727848291397095,
+        "cat": 0.21936947107315063,
+        "tiger": 0.21100948750972748,
+        "lion": 0.19818216562271118,
+        "giraffe": 0.20292262732982635
+      }
+    },
+    {
+      "original_path": "data\\images\\image6.jpeg",
+      "class_index": 1,
+      "class_name": "cat",
+      "confidence": 0.28084832429885864,
+      "all_similarities": {
+        "dog": 0.2264460325241089,
+        "cat": 0.28084832429885864,
+        "tiger": 0.2650158703327179,
+        "lion": 0.23668920993804932,
+        "giraffe": 0.18961960077285767
+      }
+    },
+    {
+      "original_path": "data\\images\\images (1).jpeg",
+      "class_index": 2,
+      "class_name": "tiger",
+      "confidence": 0.3003937005996704,
+      "all_similarities": {
+        "dog": 0.18635040521621704,
+        "cat": 0.22955074906349182,
+        "tiger": 0.3003937005996704,
+        "lion": 0.22780543565750122,
+        "giraffe": 0.1920243203639984
+      }
+    },
+    {
+      "original_path": "data\\images\\images (2).jpeg",
+      "class_index": 1,
+      "class_name": "cat",
+      "confidence": 0.28811758756637573,
+      "all_similarities": {
+        "dog": 0.23576508462429047,
+        "cat": 0.28811758756637573,
+        "tiger": 0.26040834188461304,
+        "lion": 0.21721278131008148,
+        "giraffe": 0.22615107893943787
+      }
+    },
+    {
+      "original_path": "data\\images\\images (3).jpeg",
+      "class_index": 1,
+      "class_name": "cat",
+      "confidence": 0.28242558240890503,
+      "all_similarities": {
+        "dog": 0.22695422172546387,
+        "cat": 0.28242558240890503,
+        "tiger": 0.23967058956623077,
+        "lion": 0.21028518676757812,
+        "giraffe": 0.20982614159584045
+      }
+    },
+    {
+      "original_path": "data\\images\\images (4).jpeg",
+      "class_index": 4,
+      "class_name": "giraffe",
+      "confidence": 0.32521966099739075,
+      "all_similarities": {
+        "dog": 0.21518859267234802,
+        "cat": 0.20404154062271118,
+        "tiger": 0.22715887427330017,
+        "lion": 0.23103241622447968,
+        "giraffe": 0.32521966099739075
+      }
+    },
+    {
+      "original_path": "data\\images\\images (5).jpeg",
+      "class_index": 2,
+      "class_name": "tiger",
+      "confidence": 0.2937197983264923,
+      "all_similarities": {
+        "dog": 0.1834937036037445,
+        "cat": 0.22376401722431183,
+        "tiger": 0.2937197983264923,
+        "lion": 0.23347601294517517,
+        "giraffe": 0.1937866061925888
+      }
+    },
+    {
+      "original_path": "data\\images\\images (6).jpeg",
+      "class_index": 0,
+      "class_name": "dog",
+      "confidence": 0.2683209180831909,
+      "all_similarities": {
+        "dog": 0.2683209180831909,
+        "cat": 0.19849719107151031,
+        "tiger": 0.1989896595478058,
+        "lion": 0.20460174977779388,
+        "giraffe": 0.18749330937862396
+      }
+    },
+    {
+      "original_path": "data\\images\\images (7).jpeg",
+      "class_index": 0,
+      "class_name": "dog",
+      "confidence": 0.2658282220363617,
+      "all_similarities": {
+        "dog": 0.2658282220363617,
+        "cat": 0.20677322149276733,
+        "tiger": 0.22006556391716003,
+        "lion": 0.21328334510326385,
+        "giraffe": 0.2040690779685974
+      }
+    },
+    {
+      "original_path": "data\\images\\images.jpeg",
+      "class_index": 0,
+      "class_name": "dog",
+      "confidence": 0.2806548774242401,
+      "all_similarities": {
+        "dog": 0.2806548774242401,
+        "cat": 0.20545928180217743,
+        "tiger": 0.2234593778848648,
+        "lion": 0.22066381573677063,
+        "giraffe": 0.19707775115966797
+      }
+    }
+  ],
+  "statistics": {
+    "mean_confidence": 0.29089805483818054,
+    "std_confidence": 0.01646309345960617,
+    "min_confidence": 0.2658282220363617,
+    "max_confidence": 0.32521966099739075
+  }
+}
