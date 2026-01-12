@@ -104,12 +104,19 @@ def generate_text_embeddings_inline(class_names: List[str], model, device):
     print("STEP 2: GENERATING CLASS TEXT EMBEDDINGS")
     print(f"{'='*70}\n")
     
-    # Check if all class names are digits (0-9)
+    # Number word mappings
+    number_words = {
+        'zero': '0', 'one': '1', 'two': '2', 'three': '3', 'four': '4',
+        'five': '5', 'six': '6', 'seven': '7', 'eight': '8', 'nine': '9'
+    }
+    digit_names = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
+    
+    # Check if all class names are digits (0-9) or number words
     is_digit_dataset = all(name.strip() in '0123456789' for name in class_names)
+    is_number_words = all(name.strip().lower() in number_words for name in class_names)
     
     if is_digit_dataset:
         # Special prompts for digit recognition
-        digit_names = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
         prompts = []
         for name in class_names:
             digit_idx = int(name.strip())
@@ -122,6 +129,23 @@ def generate_text_embeddings_inline(class_names: List[str], model, device):
             ]
             prompts.append(multi_prompts)
         print(f"Digit classification mode enabled")
+        print(f"Classes: {', '.join(class_names)}\n")
+    elif is_number_words:
+        # Sign language or number word classification
+        prompts = []
+        for name in class_names:
+            digit = number_words[name.strip().lower()]
+            digit_idx = int(digit)
+            # Multiple prompts for sign language numbers
+            multi_prompts = [
+                f"sign language number {name}",
+                f"hand sign for {name}",
+                f"hand gesture showing {name}",
+                f"a hand showing the number {digit}",
+                f"{name}"
+            ]
+            prompts.append(multi_prompts)
+        print(f"Sign language / number word mode enabled")
         print(f"Classes: {', '.join(class_names)}\n")
     else:
         # Standard prompts for object/animal classification
@@ -164,13 +188,14 @@ def annotate_with_refinement(
     num_iterations: int = 10,
     temperature: float = 0.05
 ):
-    """Iteratively refine class assignments using clustering + learning."""
+    """Iteratively refine class assignments - reassign ALL images every iteration."""
     print(f"{'='*70}")
-    print("STEP 3: CLUSTERING-BASED ITERATIVE REFINEMENT")
+    print("STEP 3: ITERATIVE REASSIGNMENT WITH LEARNING")
     print(f"{'='*70}\n")
     
     # Normalize
     image_embeddings = image_embeddings / np.linalg.norm(image_embeddings, axis=1, keepdims=True)
+    text_embeddings = text_embeddings / np.linalg.norm(text_embeddings, axis=1, keepdims=True)
     
     num_classes = len(class_names)
     num_images = len(image_embeddings)
@@ -179,90 +204,87 @@ def annotate_with_refinement(
     print(f"Number of classes: {num_classes}")
     print(f"Iterations: {num_iterations}\n")
     
-    # Use clustering to find visual groups
-    print("Step 3a: Finding visual clusters...")
-    from sklearn.cluster import KMeans
-    
-    # More clusters than classes for finer granularity
-    num_clusters = max(num_classes * 3, 20)
-    num_clusters = min(num_clusters, num_images // 2)
-    
-    kmeans = KMeans(n_clusters=num_clusters, random_state=42, n_init=10)
-    cluster_ids = kmeans.fit_predict(image_embeddings)
-    cluster_centroids = kmeans.cluster_centers_
-    cluster_centroids = cluster_centroids / np.linalg.norm(cluster_centroids, axis=1, keepdims=True)
-    
-    print(f"  Created {num_clusters} visual clusters\n")
-    
     # Initialize prototypes from text embeddings
     prototypes = text_embeddings.copy()
     
-    # Iterative refinement at cluster level
-    print("Step 3b: Iterative cluster-to-class alignment...")
+    print("Iterative learning loop (reassigning ALL images each iteration)...\n")
+    
+    prev_labels = None
     
     for iteration in range(num_iterations):
-        # Compute cluster-to-class similarities
-        cluster_similarities = cluster_centroids @ prototypes.T  # [K, C]
+        # Dynamic text weight: start high (prevent collapse), gradually decrease
+        # Early iterations: 95% text (strong anchor)
+        # Late iterations: 60% text (allow visual learning)
+        text_weight = 0.95 - (0.35 * iteration / num_iterations)
+        visual_weight = 1.0 - text_weight
         
-        # Soft assignment of clusters to classes
-        logits = cluster_similarities / temperature
-        logits = logits - np.max(logits, axis=1, keepdims=True)
-        exp_logits = np.exp(logits)
-        cluster_to_class_probs = exp_logits / np.sum(exp_logits, axis=1, keepdims=True)
+        # STEP 1: Reassign EVERY image based on current prototypes
+        similarities = image_embeddings @ prototypes.T
         
-        # Update prototypes based on cluster assignments
+        # Apply temperature scaling for sharper distinctions
+        similarities_scaled = similarities / temperature
+        labels = np.argmax(similarities_scaled, axis=1)
+        confidences = np.max(similarities, axis=1)  # Use unscaled for confidence
+        
+        # Count how many images moved
+        if prev_labels is not None:
+            num_moved = np.sum(labels != prev_labels)
+            movement_pct = 100 * num_moved / num_images
+        else:
+            num_moved = num_images
+            movement_pct = 100.0
+        
+        # STEP 2: Recompute class prototypes from NEW assignments
         new_prototypes = np.zeros_like(prototypes)
-        prototype_weights = np.zeros(num_classes)
         
-        for k in range(num_clusters):
-            cluster_mask = (cluster_ids == k)
-            cluster_images = image_embeddings[cluster_mask]
-            
-            if len(cluster_images) == 0:
-                continue
-            
-            # Distribute cluster's contribution across classes
-            for c in range(num_classes):
-                weight = cluster_to_class_probs[k, c] * len(cluster_images)
-                new_prototypes[c] += weight * cluster_centroids[k]
-                prototype_weights[c] += weight
-        
-        # Normalize and blend with text embeddings
         for c in range(num_classes):
-            if prototype_weights[c] > 0:
-                new_prototypes[c] /= prototype_weights[c]
-                # Keep text embedding influence (30% text, 70% visual)
-                prototypes[c] = 0.3 * text_embeddings[c] + 0.7 * new_prototypes[c]
-                prototypes[c] = prototypes[c] / np.linalg.norm(prototypes[c])
+            class_mask = (labels == c)
+            class_count = np.sum(class_mask)
+            
+            if class_count > 0:
+                # Average embeddings of all images currently assigned to this class
+                class_mean = np.mean(image_embeddings[class_mask], axis=0)
+                class_mean /= np.linalg.norm(class_mean)
+                
+                # Blend with dynamic weights (prevents early collapse)
+                new_prototypes[c] = text_weight * text_embeddings[c] + visual_weight * class_mean
+                new_prototypes[c] /= np.linalg.norm(new_prototypes[c])
+            else:
+                # No images assigned - keep text embedding as prototype
+                new_prototypes[c] = text_embeddings[c]
         
-        # Monitor progress
-        image_similarities = image_embeddings @ prototypes.T
-        labels = np.argmax(image_similarities, axis=1)
-        confidences = np.max(image_similarities, axis=1)
+        # Update prototypes for next iteration
+        prototypes = new_prototypes
+        prev_labels = labels.copy()
         
-        unique, counts = np.unique(labels, return_counts=True)
+        # Report statistics
+        active_classes = len(np.unique(labels))
         
         print(f"  Iteration {iteration + 1}/{num_iterations}: "
               f"mean conf={np.mean(confidences):.3f}, "
-              f"filled classes={len(unique)}/{num_classes}")
+              f"active classes={active_classes}/{num_classes}, "
+              f"text_weight={text_weight:.2f}, "
+              f"moved={num_moved} ({movement_pct:.1f}%)")
     
-    # Final assignment
+    print()
+    
+    # Final assignment with final prototypes
     similarities = image_embeddings @ prototypes.T
     labels = np.argmax(similarities, axis=1)
     confidences = np.max(similarities, axis=1)
     
-    print(f"\\nFinal Class Distribution:")
+    print(f"Final Class Distribution:")
     for class_idx, class_name in enumerate(class_names):
         count = np.sum(labels == class_idx)
         percentage = 100 * count / len(labels) if len(labels) > 0 else 0
         avg_conf = np.mean(confidences[labels == class_idx]) if count > 0 else 0
         print(f"  {class_name:15} {count:4} images ({percentage:5.1f}%) - avg confidence: {avg_conf:.3f}")
     
-    print(f"\\nOverall Statistics:")
+    print(f"\nOverall Statistics:")
     print(f"  Mean confidence: {np.mean(confidences):.3f}")
     print(f"  Std confidence:  {np.std(confidences):.3f}")
     print(f"  Min confidence:  {np.min(confidences):.3f}")
-    print(f"  Max confidence:  {np.max(confidences):.3f}\\n")
+    print(f"  Max confidence:  {np.max(confidences):.3f}\n")
     
     return labels, confidences, similarities
 
@@ -489,7 +511,7 @@ def run_pipeline(image_folder: str, output_dir: str, class_names: List[str]):
         )
     else:
         # Large dataset: Use iterative refinement with clustering
-        print(f"Dataset size ({dataset_size}) >= 100: Using clustering + iterative refinement\\n")
+        print(f"Dataset size ({dataset_size}) >= 100: Using clustering + iterative refinement\n")
         labels, confidences, similarities = annotate_with_refinement(
             image_embeddings,
             text_embeddings,

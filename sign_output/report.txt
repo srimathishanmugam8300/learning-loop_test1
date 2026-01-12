@@ -7,19 +7,19 @@ Classes: 7
 
 CLASS DISTRIBUTION:
 ----------------------------------------------------------------------
-  2                 9 images (  2.2%) - avg conf: 0.918
-  3                 0 images (  0.0%) - avg conf: 0.000
-  4               404 images ( 97.8%) - avg conf: 0.927
-  6                 0 images (  0.0%) - avg conf: 0.000
-  7                 0 images (  0.0%) - avg conf: 0.000
-  8                 0 images (  0.0%) - avg conf: 0.000
-  9                 0 images (  0.0%) - avg conf: 0.000
+  two               0 images (  0.0%) - avg conf: 0.000
+  three             0 images (  0.0%) - avg conf: 0.000
+  four            194 images ( 47.0%) - avg conf: 0.670
+  six             174 images ( 42.1%) - avg conf: 0.671
+  seven            45 images ( 10.9%) - avg conf: 0.673
+  eight             0 images (  0.0%) - avg conf: 0.000
+  nine              0 images (  0.0%) - avg conf: 0.000
 
 CONFIDENCE STATISTICS:
 ----------------------------------------------------------------------
-  Mean: 0.927
-  Std:  0.008
-  Min:  0.886
-  Max:  0.937
+  Mean: 0.671
+  Std:  0.005
+  Min:  0.651
+  Max:  0.681
 
 ======================================================================
