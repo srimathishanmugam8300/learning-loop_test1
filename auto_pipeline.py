@@ -104,19 +104,12 @@ def generate_text_embeddings_inline(class_names: List[str], model, device):
     print("STEP 2: GENERATING CLASS TEXT EMBEDDINGS")
     print(f"{'='*70}\n")
     
-    # Number word mappings
-    number_words = {
-        'zero': '0', 'one': '1', 'two': '2', 'three': '3', 'four': '4',
-        'five': '5', 'six': '6', 'seven': '7', 'eight': '8', 'nine': '9'
-    }
-    digit_names = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
-    
-    # Check if all class names are digits (0-9) or number words
+    # Check if all class names are digits (0-9)
     is_digit_dataset = all(name.strip() in '0123456789' for name in class_names)
-    is_number_words = all(name.strip().lower() in number_words for name in class_names)
     
     if is_digit_dataset:
         # Special prompts for digit recognition
+        digit_names = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine']
         prompts = []
         for name in class_names:
             digit_idx = int(name.strip())
@@ -129,23 +122,6 @@ def generate_text_embeddings_inline(class_names: List[str], model, device):
             ]
             prompts.append(multi_prompts)
         print(f"Digit classification mode enabled")
-        print(f"Classes: {', '.join(class_names)}\n")
-    elif is_number_words:
-        # Sign language or number word classification
-        prompts = []
-        for name in class_names:
-            digit = number_words[name.strip().lower()]
-            digit_idx = int(digit)
-            # Multiple prompts for sign language numbers
-            multi_prompts = [
-                f"sign language number {name}",
-                f"hand sign for {name}",
-                f"hand gesture showing {name}",
-                f"a hand showing the number {digit}",
-                f"{name}"
-            ]
-            prompts.append(multi_prompts)
-        print(f"Sign language / number word mode enabled")
         print(f"Classes: {', '.join(class_names)}\n")
     else:
         # Standard prompts for object/animal classification
