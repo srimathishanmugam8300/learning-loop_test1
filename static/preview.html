@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Web UI Preview</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .preview-box {
+            background: white;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .gradient-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 { margin: 0 0 10px 0; }
+        h2 { color: #667eea; margin-top: 30px; }
+        .feature-list {
+            background: #f9f9f9;
+            padding: 15px;
+            border-left: 4px solid #667eea;
+            margin: 15px 0;
+        }
+        .code-block {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+        }
+        .ui-mockup {
+            border: 3px solid #667eea;
+            border-radius: 12px;
+            padding: 30px;
+            background: white;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        .form-element {
+            margin: 15px 0;
+            padding: 10px;
+            border: 2px dashed #e0e0e0;
+            border-radius: 6px;
+            background: #f9f9f9;
+        }
+        .button-preview {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 6px;
+            text-align: center;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .success-box {
+            background: #e8f5e9;
+            color: #2e7d32;
+            padding: 15px;
+            border-radius: 6px;
+            border-left: 4px solid #2e7d32;
+        }
+    </style>
+</head>
+<body>
+    <div class="gradient-header">
+        <h1>🚀 Web UI for Auto Dataset Generator</h1>
+        <p>Modern, Clean, Professional Interface</p>
+    </div>
+
+    <h2>📱 What the Interface Looks Like</h2>
+    
+    <div class="ui-mockup">
+        <h3 style="text-align: center; color: #667eea;">🤖 Auto Dataset Generator</h3>
+        <p style="text-align: center; color: #888;">Upload images → Generate structured dataset → Download result</p>
+        <hr style="margin: 20px 0; border: none; border-top: 1px solid #e0e0e0;">
+        
+        <div class="form-element">
+            <strong>1. Upload Image Folder (ZIP)</strong><br>
+            <div style="text-align: center; padding: 20px; background: white; margin-top: 10px; border: 2px dashed #ccc; border-radius: 6px;">
+                📁 Drag & Drop or Click to Upload
+            </div>
+        </div>
+        
+        <div class="form-element">
+            <strong>2. Number of Classes</strong><br>
+            <input type="text" value="7" style="width: 100%; padding: 8px; margin-top: 5px;" disabled>
+        </div>
+        
+        <div class="form-element">
+            <strong>3. Class Names (space-separated)</strong><br>
+            <input type="text" placeholder="cat dog bird fish lion tiger elephant" style="width: 100%; padding: 8px; margin-top: 5px;" disabled>
+        </div>
+        
+        <div class="form-element">
+            <strong>4. Output Folder Name</strong><br>
+            <input type="text" value="dataset_output" style="width: 100%; padding: 8px; margin-top: 5px;" disabled>
+        </div>
+        
+        <div class="button-preview">
+            🚀 Generate Dataset
+        </div>
+        
+        <div class="success-box">
+            ✅ Dataset generated successfully!<br>
+            <div style="text-align: center; margin-top: 10px;">
+                <button style="background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); color: white; padding: 12px 30px; border: none; border-radius: 6px; font-weight: bold; cursor: pointer;">
+                    📥 Download Result
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <h2>✨ Key Features</h2>
+    
+    <div class="feature-list">
+        <strong>User Experience:</strong>
+        <ul>
+            <li>🎨 Beautiful purple gradient theme</li>
+            <li>📁 Drag & drop file upload</li>
+            <li>✅ Real-time form validation</li>
+            <li>⏳ Loading indicators during processing</li>
+            <li>💾 One-click download of results</li>
+            <li>📱 Responsive design (works on mobile too)</li>
+            <li>🎯 Clean, minimal interface</li>
+        </ul>
+    </div>
+
+    <div class="feature-list">
+        <strong>Technical Features:</strong>
+        <ul>
+            <li>🚀 FastAPI backend (modern & fast)</li>
+            <li>📦 Session management (UUID-based)</li>
+            <li>🔄 Automatic cleanup of temporary files</li>
+            <li>⚠️ Comprehensive error handling</li>
+            <li>💻 Pure HTML/CSS/JS (no React/Vue needed)</li>
+            <li>🔌 Zero changes to existing pipeline</li>
+        </ul>
+    </div>
+
+    <h2>🚀 How to Launch</h2>
+    
+    <div class="preview-box">
+        <p><strong>Step 1:</strong> Install dependencies</p>
+        <div class="code-block">
+pip install fastapi uvicorn python-multipart
+        </div>
+        
+        <p style="margin-top: 20px;"><strong>Step 2:</strong> Start the server</p>
+        <div class="code-block">
+python server.py
+        </div>
+        
+        <p style="margin-top: 20px;"><strong>Step 3:</strong> Open browser</p>
+        <div class="code-block">
+http://localhost:8000
+        </div>
+    </div>
+
+    <h2>🎯 User Workflow</h2>
+    
+    <div class="preview-box">
+        <ol>
+            <li><strong>Prepare:</strong> Collect unlabeled images in a folder</li>
+            <li><strong>Zip:</strong> Compress the folder into a ZIP file</li>
+            <li><strong>Upload:</strong> Drag ZIP file to the web interface</li>
+            <li><strong>Configure:</strong> Enter number of classes and their names</li>
+            <li><strong>Generate:</strong> Click the generate button</li>
+            <li><strong>Wait:</strong> Processing happens automatically (1-5 minutes)</li>
+            <li><strong>Download:</strong> Get organized dataset as ZIP file</li>
+            <li><strong>Extract:</strong> Unzip to see your structured dataset</li>
+        </ol>
+    </div>
+
+    <h2>📊 What You Get</h2>
+    
+    <div class="preview-box">
+        <p>The downloaded ZIP contains a fully organized dataset:</p>
+        <div class="code-block">
+output_folder/
+├── metadata.json          # Dataset configuration
+├── report.txt            # Summary statistics
+├── class_1/              # Images for class 1
+├── class_2/              # Images for class 2
+├── class_3/              # Images for class 3
+└── splits/
+    ├── train/            # Training set (70%)
+    │   ├── class_1/
+    │   ├── class_2/
+    │   └── class_3/
+    ├── val/              # Validation set (15%)
+    │   ├── class_1/
+    │   ├── class_2/
+    │   └── class_3/
+    └── test/             # Test set (15%)
+        ├── class_1/
+        ├── class_2/
+        └── class_3/
+        </div>
+    </div>
+
+    <h2>🏗️ Architecture</h2>
+    
+    <div class="preview-box">
+        <div class="code-block">
+┌─────────────────────────┐
+│   Browser (Frontend)    │ ← User interacts here
+│   - Upload ZIP          │
+│   - Enter config        │
+│   - Download result     │
+└───────────┬─────────────┘
+            │ HTTP Request (POST)
+            ▼
+┌─────────────────────────┐
+│   FastAPI Server        │ ← server.py (NEW)
+│   - Receive ZIP         │
+│   - Extract files       │
+│   - Run pipeline        │
+│   - Package output      │
+└───────────┬─────────────┘
+            │ subprocess.run()
+            ▼
+┌─────────────────────────┐
+│   auto_pipeline.py      │ ← Your ML code (UNCHANGED)
+│   - Embed images        │
+│   - Cluster with HDBSCAN│
+│   - Organize files      │
+└───────────┬─────────────┘
+            │
+            ▼
+┌─────────────────────────┐
+│   Structured Dataset    │ ← Ready to use!
+└─────────────────────────┘
+        </div>
+    </div>
+
+    <h2>💡 Why This Design?</h2>
+    
+    <div class="feature-list">
+        <strong>Separation of Concerns:</strong>
+        <ul>
+            <li>✅ UI layer completely separate from ML logic</li>
+            <li>✅ Can update UI without touching pipeline</li>
+            <li>✅ Can update pipeline without touching UI</li>
+            <li>✅ Easy to test each component independently</li>
+        </ul>
+    </div>
+
+    <div class="feature-list">
+        <strong>Professional Architecture:</strong>
+        <ul>
+            <li>✅ Industry-standard REST API pattern</li>
+            <li>✅ Scalable design (can deploy to cloud later)</li>
+            <li>✅ Clean, maintainable code</li>
+            <li>✅ Easy to extend with new features</li>
+        </ul>
+    </div>
+
+    <div class="feature-list">
+        <strong>User-Friendly:</strong>
+        <ul>
+            <li>✅ No command line needed</li>
+            <li>✅ Visual feedback at every step</li>
+            <li>✅ Clear error messages</li>
+            <li>✅ Works for non-technical users</li>
+        </ul>
+    </div>
+
+    <h2>🎉 Summary</h2>
+    
+    <div class="success-box">
+        <strong>You now have a production-ready web interface that:</strong>
+        <ul style="margin-top: 10px;">
+            <li>✅ Looks beautiful and professional</li>
+            <li>✅ Works 100% locally (no cloud needed)</li>
+            <li>✅ Requires no Streamlit</li>
+            <li>✅ Doesn't modify your core logic</li>
+            <li>✅ Provides excellent user experience</li>
+            <li>✅ Uses modern web technologies</li>
+            <li>✅ Is ready to deploy to production</li>
+        </ul>
+    </div>
+
+    <div style="text-align: center; margin: 40px 0; padding: 30px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 12px;">
+        <h2 style="color: white; margin: 0;">🚀 Ready to Launch!</h2>
+        <p style="margin: 10px 0 0 0;">Run <code style="background: rgba(255,255,255,0.2); padding: 5px 10px; border-radius: 4px;">python server.py</code> and open your browser</p>
+    </div>
+
+</body>
+</html>

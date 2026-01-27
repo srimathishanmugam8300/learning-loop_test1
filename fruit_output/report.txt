@@ -1,0 +1,27 @@
+======================================================================
+AUTO-ANNOTATION REPORT
+======================================================================
+
+Total images: 360
+Classes: 9
+
+CLASS DISTRIBUTION:
+----------------------------------------------------------------------
+  apple            41 images ( 11.4%) - avg conf: 0.634
+  avocado          32 images (  8.9%) - avg conf: 0.629
+  mango            34 images (  9.4%) - avg conf: 0.633
+  banana           37 images ( 10.3%) - avg conf: 0.623
+  pineapple        42 images ( 11.7%) - avg conf: 0.633
+  papaya           47 images ( 13.1%) - avg conf: 0.629
+  grape            41 images ( 11.4%) - avg conf: 0.633
+  dragonfruit      36 images ( 10.0%) - avg conf: 0.622
+  guava            50 images ( 13.9%) - avg conf: 0.625
+
+CONFIDENCE STATISTICS:
+----------------------------------------------------------------------
+  Mean: 0.629
+  Std:  0.028
+  Min:  0.492
+  Max:  0.680
+
+======================================================================

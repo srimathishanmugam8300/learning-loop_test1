@@ -47,6 +47,9 @@ demo_output/
 output/
 annotated_dataset/
 
+# Web UI uploads (temporary files)
+uploads/
+
 # OS
 .DS_Store
 Thumbs.db

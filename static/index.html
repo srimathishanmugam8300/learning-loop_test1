@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UADA</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>UADA</h1>
+            <p class="subtitle">Universal Auto Dataset Annotator </p>
+        </header>
+
+        <div class="card">
+            <form id="uploadForm">
+                <!-- File Upload -->
+                <div class="form-group">
+                    <label for="zipFile">
+                        <strong>1. Upload Image Folder (ZIP)</strong>
+                    </label>
+                    <div class="file-upload-wrapper">
+                        <input 
+                            type="file" 
+                            id="zipFile" 
+                            name="zipFile" 
+                            accept=".zip" 
+                            required
+                        >
+                        <span class="file-name" id="fileName">No file chosen</span>
+                    </div>
+                    <small>Upload a ZIP file containing your unlabeled images</small>
+                </div>
+
+                <!-- Number of Classes -->
+                <div class="form-group">
+                    <label for="numClasses">
+                        <strong>2. Number of Classes</strong>
+                    </label>
+                    <input 
+                        type="number" 
+                        id="numClasses" 
+                        name="numClasses" 
+                        min="2" 
+                        max="50" 
+                        value="7" 
+                        required
+                    >
+                    <small>How many categories/classes are in your dataset?</small>
+                </div>
+
+                <!-- Class Names -->
+                <div class="form-group">
+                    <label for="classNames">
+                        <strong>3. Class Names (space-separated)</strong>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="classNames" 
+                        name="classNames" 
+                        placeholder="cat dog bird fish lion tiger elephant" 
+                        required
+                    >
+                    <small>Enter class names separated by spaces</small>
+                </div>
+
+                <!-- Output Folder Name -->
+                <div class="form-group">
+                    <label for="outputFolder">
+                        <strong>4. Output Folder Name</strong>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="outputFolder" 
+                        name="outputFolder" 
+                        placeholder="my_dataset_output" 
+                        value="dataset_output"
+                        required
+                    >
+                    <small>Name for the generated dataset folder</small>
+                </div>
+
+                <!-- Generate Button -->
+                <button type="submit" class="btn btn-primary" id="generateBtn">
+                    <span class="btn-text">Generate Dataset</span>
+                    <span class="spinner" id="spinner"></span>
+                </button>
+            </form>
+
+            <!-- Status Messages -->
+            <div id="statusMessage" class="status-message hidden"></div>
+
+            <!-- Download Button -->
+            <div id="downloadSection" class="download-section hidden">
+                <p class="success-message">Dataset generated successfully!</p>
+                <a id="downloadBtn" class="btn btn-success" download>
+                     Download Result
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            <p></p>
+        </footer>
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
